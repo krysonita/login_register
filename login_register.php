@@ -33,6 +33,11 @@ if (isset($_POST['login'])){
             $_SESSION['name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
 
+            // Set cookies for 7 days
+            setcookie("name", $user['name'], time() + (7 * 24 * 60 * 60), "/");
+            setcookie("email", $user['email'], time() + (7 * 24 * 60 * 60), "/");
+
+
             if ($user['role'] === 'admin'){
                 header("Location: admin_page.php");
             } else {
