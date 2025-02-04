@@ -28,7 +28,7 @@ return $formName === $activeForm ? 'active' : '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Stack Login & Register Form With User & Admin Page | Codehal</title>
+    <title>Full-Stack Login & Register Form With User & Admin Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -54,7 +54,7 @@ return $formName === $activeForm ? 'active' : '';
                 <?= showError($errors['register']); ?>
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" placeholder="Password" required> 
                 <select name="role" required>
                     <option value="">--Select Role--</option>
                     <option value="user">User</option>
@@ -64,7 +64,7 @@ return $formName === $activeForm ? 'active' : '';
                 <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
             </form>
         </div>
-        
+
     </div>
 
     <script src="script.js"></script>
