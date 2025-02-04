@@ -2,6 +2,7 @@
 
 session_start();
 
+// Capture session errors
 $errors = [
     'login' => $_SESSION['login_error'] ?? '',
     'register' => $_SESSION['register_error'] ?? ''
@@ -9,15 +10,29 @@ $errors = [
 
 $activeForm = $_SESSION['active_form'] ?? 'login';
 
+// Clear session errors after retrieving them
 session_unset();
 
+// Function to show an error message
 function showError($error) {
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
 }
 
+// Function to determine the active form
 function isActiveForm($formName, $activeForm) {
-return $formName === $activeForm ? 'active' : '';
+    return $formName === $activeForm ? 'active' : '';
 }
+
+// Shutdown function to capture fatal errors
+function handleShutdown() {
+    $error = error_get_last();
+    if ($error && ($error['type'] === E_ERROR || $error['type'] === E_PARSE)) {
+        echo "<p class='error-message'>A fatal error occurred: {$error['message']} in {$error['file']} on line {$error['line']}</p>";
+    }
+}
+
+// Register shutdown function
+register_shutdown_function('handleShutdown');
 
 ?>
 
